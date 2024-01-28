@@ -1,40 +1,59 @@
-# libqalculate
-Qalculate! library and CLI
+# libxalculate
+
+CrossPlatform and maybe more Modern versions of Qalculate! library and CLI
+
+## About this fork
+
+This is a fork of the original Qalculate! library and CLI.
+
+we change buildsystem from autotools to cmake,and apply some patch so that it can work with msvc
+
+you can easeily build it with cmake by just type
+
+- `cmake . -Bbuild`
+- `cmake --build build`
+
+## Following is the original README.md
 
 ![Image of qalc](http://qalculate.github.io/images/qalc.png)
 
 Qalculate! is a multi-purpose cross-platform desktop calculator. It is simple to use but provides power and versatility normally reserved for complicated math packages, as well as useful tools for everyday needs (such as currency conversion and percent calculation). Features include a large library of customizable functions, unit calculations and conversion, symbolic calculations (including integrals and equations), arbitrary precision, uncertainty propagation, interval arithmetic, plotting, and a user-friendly interface (GTK+, Qt, and CLI).
 
 ## Requirements
-* GMP and MPFR
-* libxml2
-* libcurl, icu, gettext (recommended)
-* iconv, readline (recommended for CLI)
-* Gnuplot (optional)
-* doxygen (for compilation of git version)
+
+- GMP and MPFR
+- libxml2
+- libcurl, icu, gettext (recommended)
+- iconv, readline (recommended for CLI)
+- Gnuplot (optional)
+- doxygen (for compilation of git version)
 
 For Linux distributions which provide separate development packages, these must be installed for all the required libraries (e.g. libmpfr-dev) before compilation.
 
 ## Installation
+
 Instructions and download links for installers, binaries packages, and the source code of released versions of Qalculate! are available at https://qalculate.github.io/downloads.html.
 
 In a terminal window in the top source code directory run
-* `./autogen.sh` *(not required if using a release source tarball, only if using the git version)*
-* `./configure`
-* `make`
-* `make install` *(as root, e.g. `sudo make install`)*
-* `ldconfig` *(if necessary, as root)*
+
+- `./autogen.sh` _(not required if using a release source tarball, only if using the git version)_
+- `./configure`
+- `make`
+- `make install` _(as root, e.g. `sudo make install`)_
+- `ldconfig` _(if necessary, as root)_
 
 If libqalculate is installed in /usr/local (default) you may need to add /usr/local/lib to the library path of the system (add /usr/local/lib to a file under /etc/ld.so.conf.d/ and run ldconfig).
 
 ## API Documentation
+
 The API documentation is included in the package and is installed in $docdir/libqalculate/html (usually /usr/share/doc/libqalculate/html). It is generated when running autogen.sh.
 
 It is also available online at http://qalculate.github.io/reference/index.html.
 
 ## Using the CLI program 'qalc'
+
 To calculate a single expression from the command line (non-interactive mode) enter
-`qalc mathematical expression` *(e.g. qalc 5+2)*
+`qalc mathematical expression` _(e.g. qalc 5+2)_
 
 `qalc --help` shows information about command line options in non-interactive mode.
 
@@ -43,66 +62,69 @@ If you run `qalc` without any mathematical expression the program will start in 
 A man page is also available (shown using the command `man qalc`, or online at https://qalculate.github.io/manual/qalc.html).
 
 ## Other Applications
+
 The main user interfaces for libqalculate are
 qalculate-gtk (https://github.com/Qalculate/qalculate-gtk) and
 qalculate-qt (https://github.com/Qalculate/qalculate-qt).
 
 Other software using libqalculate include
-* KDE Plasma Workspace (https://www.kde.org/workspaces/plasmadesktop/)
-* Cantor (http://kde.org/applications/education/cantor/)
-* Step (http://kde.org/applications/education/step/)
-* Qalculate widget for KDE Plasma (https://store.kde.org/p/1155946/)
+
+- KDE Plasma Workspace (https://www.kde.org/workspaces/plasmadesktop/)
+- Cantor (http://kde.org/applications/education/cantor/)
+- Step (http://kde.org/applications/education/step/)
+- Qalculate widget for KDE Plasma (https://store.kde.org/p/1155946/)
 
 ## Features
-* Calculation and parsing:
-   * Basic operations and operators: + - * / mod ^ E () && || ! < > >= <= != ~ & | << >> xor
-   * Fault-tolerant parsing of strings: log 5 / 2 .5 (3) + (2( 3 +5 = ln(5) / (2.5 * 3) + 2 * (3 + 5)
-   * Expressions may contain any combination of numbers, functions, units, variables, vectors and matrices, and dates
-   * Supports complex and infinite numbers
-   * Propagation of uncertainty
-   * Interval arithmetic (for determination of the number of significant digits or direct calculation with intervals of numbers)
-   * Supports all common number bases, as well as negative and non-integer radices, sexagesimal numbers, time format, and roman numerals
-   * Ability to disable functions, variables, units or unknown variables for less confusion: e.g. when you do not want (a+b)^2 to mean (are+barn)^2 but ("a"+"b")^2
-   * Controllable implicit multiplication
-   * Matrices and vectors, and related operations (determinants etc.)
-   * Verbose error messages
-   * Arbitrary precision
-   * RPN mode
-* Result display:
-   * Supports all common number bases, as well as negative and non-integer radices, sexagesimal numbers, time format, and roman numerals
-   * Many customization options: precision, max/min decimals, complex form, multiplication sign, etc.
-   * Exact or approximate: sqrt(32) returns 4 * sqrt(2) or 5.66
-   * Simple and mixed fractions: 4 / 6 * 2 = 1.333... = 4/3 = 1 + 1/3
-* Symbolic calculation:
-   * E.g. (x + y)^2 = x^2 + 2xy + y^2; 4 "apples" + 3 "oranges"
-   * Factorization and simplification
-   * Differentiation and integration
-   * Can solve most equations and inequalities
-   * Customizable assumptions give different results (e.g. ln(2x) = ln(2) + ln(x) if x is assumed positive)
-* Functions:
-   * Hundreds of flexible functions: trigonometry, exponents and logarithms, combinatorics, geometry, calculus, statistics, finance, time and date, etc.
-   * Can easily be created, edited and saved to a standard XML file
-* Units:
-   * Supports all SI units and prefixes (including binary), as well as imperial and other unit systems
-   * Automatic conversion: ft + yd + m = 2.2192 m
-   * Explicit conversion: 5 m/s to mi/h = 11.18 miles/hour
-   * Smart conversion: automatically converts 5 kg*m/s^2 to 5 N
-   * Currency conversion with retrieval of daily exchange rates
-   * Different name forms: abbreviation, singular, plural (m, meter, meters)
-   * Can easily be created, edited and saved to a standard XML file
-* Variables and constants:
-   * Basic constants: pi, e, etc.
-   * Lots of physical constants (with or without units) and properties of chemical element
-   * CSV file import and export
-   * Can easily be created, edited and saved to a standard XML file
-   * Flexible - may contain simple numbers, units, or whole expressions
-   * Data sets with objects and associated properties in database-like structure
-* Plotting:
-   * Uses Gnuplot
-   * Can plot functions or data (matrices and vectors)
-   * Ability to save plot to PNG image, postscript, etc.
-   * Several customization options
-* and more...
+
+- Calculation and parsing:
+  - Basic operations and operators: + - \* / mod ^ E () && || ! < > >= <= != ~ & | << >> xor
+  - Fault-tolerant parsing of strings: log 5 / 2 .5 (3) + (2( 3 +5 = ln(5) / (2.5 _ 3) + 2 _ (3 + 5)
+  - Expressions may contain any combination of numbers, functions, units, variables, vectors and matrices, and dates
+  - Supports complex and infinite numbers
+  - Propagation of uncertainty
+  - Interval arithmetic (for determination of the number of significant digits or direct calculation with intervals of numbers)
+  - Supports all common number bases, as well as negative and non-integer radices, sexagesimal numbers, time format, and roman numerals
+  - Ability to disable functions, variables, units or unknown variables for less confusion: e.g. when you do not want (a+b)^2 to mean (are+barn)^2 but ("a"+"b")^2
+  - Controllable implicit multiplication
+  - Matrices and vectors, and related operations (determinants etc.)
+  - Verbose error messages
+  - Arbitrary precision
+  - RPN mode
+- Result display:
+  - Supports all common number bases, as well as negative and non-integer radices, sexagesimal numbers, time format, and roman numerals
+  - Many customization options: precision, max/min decimals, complex form, multiplication sign, etc.
+  - Exact or approximate: sqrt(32) returns 4 \* sqrt(2) or 5.66
+  - Simple and mixed fractions: 4 / 6 \* 2 = 1.333... = 4/3 = 1 + 1/3
+- Symbolic calculation:
+  - E.g. (x + y)^2 = x^2 + 2xy + y^2; 4 "apples" + 3 "oranges"
+  - Factorization and simplification
+  - Differentiation and integration
+  - Can solve most equations and inequalities
+  - Customizable assumptions give different results (e.g. ln(2x) = ln(2) + ln(x) if x is assumed positive)
+- Functions:
+  - Hundreds of flexible functions: trigonometry, exponents and logarithms, combinatorics, geometry, calculus, statistics, finance, time and date, etc.
+  - Can easily be created, edited and saved to a standard XML file
+- Units:
+  - Supports all SI units and prefixes (including binary), as well as imperial and other unit systems
+  - Automatic conversion: ft + yd + m = 2.2192 m
+  - Explicit conversion: 5 m/s to mi/h = 11.18 miles/hour
+  - Smart conversion: automatically converts 5 kg\*m/s^2 to 5 N
+  - Currency conversion with retrieval of daily exchange rates
+  - Different name forms: abbreviation, singular, plural (m, meter, meters)
+  - Can easily be created, edited and saved to a standard XML file
+- Variables and constants:
+  - Basic constants: pi, e, etc.
+  - Lots of physical constants (with or without units) and properties of chemical element
+  - CSV file import and export
+  - Can easily be created, edited and saved to a standard XML file
+  - Flexible - may contain simple numbers, units, or whole expressions
+  - Data sets with objects and associated properties in database-like structure
+- Plotting:
+  - Uses Gnuplot
+  - Can plot functions or data (matrices and vectors)
+  - Ability to save plot to PNG image, postscript, etc.
+  - Several customization options
+- and more...
 
 _For more details about the syntax, and available functions, units, and variables, please consult the manual (https://qalculate.github.io/manual/)_
 
@@ -114,7 +136,7 @@ _Note that semicolon can be replaced with comma in function arguments, if comma 
 
 sqrt 4 _= sqrt(4) = 4^(0.5) = 4^(1/2) = 2_
 
-sqrt(25; 16; 9; 4) _= \[5  4  3  2\]_
+sqrt(25; 16; 9; 4) _= \[5 4 3 2\]_
 
 sqrt(32) _= 4 × √(2) (in exact mode)_
 
@@ -181,9 +203,9 @@ plot(x^2; −5; 5) _(plots the function y=x^2 from -5 to 5)_
 
 ### Physical constants
 
-k\_e / G × a\_0 _= (coulombs\_constant / newtonian\_constant) × bohr\_radius ≈ 7.126e9 kg·H·m^−1_
+k*e / G × a_0 *= (coulombs*constant / newtonian_constant) × bohr_radius ≈ 7.126e9 kg·H·m^−1*
 
-ℎ / (λ\_C × c) _= planck ∕ (compton\_wavelength × speed\_of\_light) ≈ 9.1093837e-31 kg_
+ℎ / (λ*C × c) *= planck ∕ (compton*wavelength × speed_of_light) ≈ 9.1093837e-31 kg*
 
 5 ns × rydberg to c _≈ 6.0793194E-8c_
 
@@ -238,7 +260,7 @@ solve(x = y+ln(y); y) _= lambertw(e^x)_
 
 solve2(5x=2y^2; sqrt(y)=2; x; y) _= 32/5_
 
-multisolve(\[5x=2y+32, y=2z, z=2x\]; \[x, y, z\]) _= \[−32/3  −128/3  −64/3\]_
+multisolve(\[5x=2y+32, y=2z, z=2x\]; \[x, y, z\]) _= \[−32/3 −128/3 −64/3\]_
 
 dsolve(diff(y; x) − 2y = 4x; 5) _= 6e^(2x) − 2x − 1_
 
@@ -260,19 +282,19 @@ limit(ln(1 + 4x)/(3^x − 1); 0) _= 4 / ln(3)_
 
 ### Matrices and vectors
 
-\[1, 2, 3; 4, 5, 6\] _= ((1; 2; 3); (4; 5; 6)) = \[1  2  3; 4  5  6\] (2×3 matrix)_
+\[1, 2, 3; 4, 5, 6\] _= ((1; 2; 3); (4; 5; 6)) = \[1 2 3; 4 5 6\] (2×3 matrix)_
 
-(1; 2; 3) × 2 − 2 _= \[(1 × 2 − 2), (2 × 2 − 2), (3 × 2 − 2)\] = \[0  2  4\]_
+(1; 2; 3) × 2 − 2 _= \[(1 × 2 − 2), (2 × 2 − 2), (3 × 2 − 2)\] = \[0 2 4\]_
 
 \[1 2 3\].\[4 5 6\] = dot(\[1 2 3\]; \[4 5 6\]) _= 32 (dot product)_
 
 cross(\[1 2 3\]; \[4 5 6\]) _= \[−3 6 −3\] (cross product)_
 
-\[1 2 3; 4 5 6\].×\[7 8 9; 10 11 12\] _= hadamard(\[1 2 3; 4 5 6\]; \[7 8 9; 10 11 12\]) = \[7  16  27; 40  55  72\] (hadamard product)_
+\[1 2 3; 4 5 6\].×\[7 8 9; 10 11 12\] _= hadamard(\[1 2 3; 4 5 6\]; \[7 8 9; 10 11 12\]) = \[7 16 27; 40 55 72\] (hadamard product)_
 
-\[1 2 3; 4 5 6\] × \[7 8; 9 10; 11 12\] _= \[58  64; 139  154\] (matrix multiplication)_
+\[1 2 3; 4 5 6\] × \[7 8; 9 10; 11 12\] _= \[58 64; 139 154\] (matrix multiplication)_
 
-\[1 2; 3 4\]^-1 _= inverse(\[1 2; 3 4\]) = \[−2  1; 1.5  −0.5\]_
+\[1 2; 3 4\]^-1 _= inverse(\[1 2; 3 4\]) = \[−2 1; 1.5 −0.5\]_
 
 ### Statistics
 
@@ -339,4 +361,3 @@ sqrt(32) to base sqrt(2) _≈ 100000_
 0xD8 to unicode _= Ø_
 
 code(Ø) to hex _= 0xD8_
-

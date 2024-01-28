@@ -25,8 +25,11 @@
 #include "Number.h"
 
 #include <locale.h>
+#ifdef _WIN32
+#include <io.h>
+#else
 #include <unistd.h>
-
+#endif
 using std::string;
 using std::cout;
 using std::vector;

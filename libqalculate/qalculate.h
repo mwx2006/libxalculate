@@ -12,17 +12,18 @@
 #ifndef QALCULATE_H
 #define QALCULATE_H
 
-#include <libqalculate/includes.h>
-#include <libqalculate/util.h>
+#include <libqalculate/BuiltinFunctions.h>
 #include <libqalculate/Calculator.h>
+#include <libqalculate/DataSet.h>
+#include <libqalculate/ExpressionItem.h>
+#include <libqalculate/Function.h>
 #include <libqalculate/MathStructure.h>
 #include <libqalculate/Number.h>
 #include <libqalculate/Prefix.h>
-#include <libqalculate/ExpressionItem.h>
-#include <libqalculate/Variable.h>
-#include <libqalculate/Function.h>
-#include <libqalculate/DataSet.h>
 #include <libqalculate/Unit.h>
-#include <libqalculate/BuiltinFunctions.h>
+#include <libqalculate/Variable.h>
+#include <libqalculate/includes.h>
+#include <libqalculate/util.h>
+
 
 #endif
